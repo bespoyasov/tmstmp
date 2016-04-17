@@ -50,6 +50,12 @@ var AppHelpers = {
 		else if (dateStr.indexOf('зав') > -1 || dateStr.indexOf('tom') > -1) {
 			return AppHelpers.getTomorrowDateAndTimestamp();
 		}
+		else if (dateStr.indexOf('вче') > -1 || dateStr.indexOf('yest') > -1) {
+			return AppHelpers.getYesterdayDateAndTimestamp();
+		}
+		else if (dateStr.indexOf('поза') > -1) {
+			return AppHelpers.getBeforeYesterdayDateAndTimestamp();
+		}
 	},
 	
 	
@@ -175,6 +181,8 @@ var AppHelpers = {
 	getTimestampOfStartDay: function(daysforward) {
 		let now = new Date();
 		let days = daysforward || 1;
+		if (days == 4) days = 0;
+		if (days == 5) days = -1;
 		
 		let startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 		startOfDay = startOfDay.getTime() + (days-1)*86400000;
@@ -202,6 +210,17 @@ var AppHelpers = {
 	
 	getAfterTomorrowDateAndTimestamp: function() {
 		let result = AppHelpers.getTimestampOfStartDay(3);
+		return result;
+	},
+	
+	
+	getYesterdayDateAndTimestamp: function() {
+		let result = AppHelpers.getTimestampOfStartDay(4);
+		return result;
+	},
+	
+	getBeforeYesterdayDateAndTimestamp: function() {
+		let result = AppHelpers.getTimestampOfStartDay(5);
 		return result;
 	},
 	
