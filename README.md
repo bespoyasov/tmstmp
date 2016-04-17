@@ -5,6 +5,8 @@ Converts dates in timestamps, intervals to milliseconds and backwards.
 - Today (Сегодня)
 - tomorrow (завтра)
 - послезавтра
+- yesterday (вчера)
+- позавчера
 - 17 04 2016
 - 17 4 2016
 - 17 4 16
