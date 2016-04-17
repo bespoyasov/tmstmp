@@ -18,3 +18,5 @@ App for converting timestamps to date and backwards
 - 17 apr 2016
 
 Timestamp is in milliseconds 
+
+[Demo](http://bespoyasov.ru/tmstmp/)
