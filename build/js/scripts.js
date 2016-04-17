@@ -72,7 +72,7 @@ var AppView = function (_React$Component) {
 			var vl = event.target.value;
 			var res = _helpers.AppHelpers.parseTimestamp(vl);
 
-			var date = res ? res.date || '0' : '0';
+			var date = res ? res.date || '' : '';
 
 			this.setState({
 				date: date,
@@ -149,6 +149,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var AppHelpers = {
 
+	// связь с вьюхой
 	parseDate: function parseDate(date) {
 		var dateStr = date.toString().toLowerCase();
 
@@ -162,7 +163,7 @@ var AppHelpers = {
 	},
 
 	parseTimestamp: function parseTimestamp(tmstmp) {
-		var tmstmpInt = parseInt(tmstmp);
+		var tmstmpInt = parseInt(tmstmp) || 0;
 
 		var res = {
 			date: AppHelpers.getDateFromTimestamp(tmstmpInt),
@@ -172,6 +173,7 @@ var AppHelpers = {
 		return res;
 	},
 
+	// определение формата
 	parseDateFormat0: function parseDateFormat0(dateStr) {
 		if (dateStr.indexOf('се') > -1 || dateStr.indexOf('tod') > -1) {
 			return AppHelpers.getTodayDateAndTimestamp();
@@ -191,7 +193,7 @@ var AppHelpers = {
 		var M = parseInt(m);
 		var Y = parseInt(y);
 
-		if (Y < 10) Y = parseInt('200' + Y);else if (Y < 50) Y = parseInt('20' + Y);else if (Y < 100) Y = parseInt('19' + Y);else if (Y < 1000) Y = parseInt('1' + Y);
+		if (Y < 1000 || y == '') Y = new Date().getFullYear();
 
 		var res = {
 			date: dateStr,
@@ -202,6 +204,29 @@ var AppHelpers = {
 	},
 
 	parseDateFormat2: function parseDateFormat2(dateStr) {
+
+		// калькулятор
+		var preRes = {
+			date: dateStr
+		};
+
+		if (dateStr.indexOf('мин') > -1 || dateStr.indexOf('min') > -1) {
+			preRes.timestamp = AppHelpers.getMSFor(1, dateStr);
+		} else if (dateStr.indexOf('час') > -1 || dateStr.indexOf('hou') > -1) {
+			preRes.timestamp = AppHelpers.getMSFor(2, dateStr);
+		} else if (dateStr.indexOf('ден') > -1 || dateStr.indexOf('дн') > -1 || dateStr.indexOf('da') > -1) {
+			preRes.timestamp = AppHelpers.getMSFor(3, dateStr);
+		} else if (dateStr.indexOf('нед') > -1 || dateStr.indexOf('wee') > -1) {
+			preRes.timestamp = AppHelpers.getMSFor(4, dateStr);
+		} else if (dateStr.indexOf('мес') > -1 || dateStr.indexOf('mon') > -1) {
+			preRes.timestamp = AppHelpers.getMSFor(5, dateStr);
+		} else if (dateStr.indexOf('лет') > -1 || dateStr.indexOf('год') > -1 || dateStr.indexOf('yea') > -1) {
+			preRes.timestamp = AppHelpers.getMSFor(6, dateStr);
+		}
+
+		if (preRes.timestamp) return preRes;
+
+		// не калькулятор
 		var d = dateStr.substr(0, dateStr.search(/\s/));
 		var m = dateStr.substr(dateStr.search(/\s/)).replace(/\d/g, '').replace(/\s/g, '');
 		var y = dateStr.substr(dateStr.search(/\s/)).replace(/\D/g, '').replace(/\s/g, '');
@@ -227,7 +252,7 @@ var AppHelpers = {
 		var M = parseInt(idx);
 		var Y = parseInt(y);
 
-		if (Y < 50) Y = parseInt('20' + Y);else if (Y < 100) Y = parseInt('19' + Y);
+		if (Y < 1000 || y == '') Y = new Date().getFullYear();
 
 		var res = {
 			date: dateStr,
@@ -237,6 +262,7 @@ var AppHelpers = {
 		return res;
 	},
 
+	// то оттуда или наоборот
 	getDateFromTimestamp: function getDateFromTimestamp(tmstmp) {
 		var tmstmpInt = parseInt(tmstmp);
 		var dt = new Date();
@@ -265,6 +291,7 @@ var AppHelpers = {
 		return startOfDay.getTime();
 	},
 
+	// для сегодня, завтра, послезавтра
 	getTimestampOfStartDay: function getTimestampOfStartDay(daysforward) {
 		var now = new Date();
 		var days = daysforward || 1;
@@ -293,13 +320,47 @@ var AppHelpers = {
 	getAfterTomorrowDateAndTimestamp: function getAfterTomorrowDateAndTimestamp() {
 		var result = AppHelpers.getTimestampOfStartDay(3);
 		return result;
+	},
+
+	// количество миллисекунд
+	getMSFor: function getMSFor(type, dateStr) {
+		var offset = 1000;
+
+		switch (type) {
+			case 1:
+				offset *= 60;
+				break;
+			case 2:
+				offset *= 60 * 60;
+				break;
+			case 3:
+				offset *= 60 * 60 * 24;
+				break;
+			case 4:
+				offset *= 60 * 60 * 24 * 7;
+				break;
+			case 5:
+				offset *= 60 * 60 * 24 * 30;
+				break;
+			case 6:
+				offset *= 60 * 60 * 24 * 365;
+				break;
+
+			default:
+				offset = offset;
+				break;
+		}
+
+		var nmbr = parseInt(dateStr.replace(/\D/g, ''));
+		var ms = nmbr * offset;
+		return ms;
 	}
 
 }; /* 
    	Форматы:
    	0 — Сегодня, завтра, послезавтра, today, tomorrow;
    	1 — 17 04 2016, 17.04.2016, 17/04/2016, 17 4 2016, 17 04 16 и т.д.;
-   	2 — 17 апреля 2016, 17 апр 2016, 17 april 2016;
+   	2 — 17 апреля 2016, 17 апр 2016, 17 april 2016, 1 день, 2 недели, 3 месяца, 5 лет и т.д.;
    */
 
 exports.AppHelpers = AppHelpers;

@@ -37,7 +37,7 @@ class AppView extends React.Component {
 		let vl = event.target.value;
 		let res = AppHelpers.parseTimestamp(vl);
 		
-		let date = res ? (res.date || '0') : '0';
+		let date = res ? (res.date || '') : '';
 		
 		this.setState({
 			date: date,

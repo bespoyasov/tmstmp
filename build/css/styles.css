@@ -145,7 +145,7 @@ button {
   align-content: stretch;
   flex-wrap: wrap;
   flex-direction: column;
-  padding: 0 20px;
+  padding: 0 20px 40px 20px;
 }
 .app-label {
   display: block;
@@ -173,11 +173,34 @@ button {
   content: ' ';
   display: block;
   top: 26px;
-  bottom: 16px;
-  font-size: 15px;
+  bottom: 15px;
+  font-size: 14px;
   color: rgba(0,0,0,0.3);
   content: 'мс';
   right: 0;
   z-index: 10;
   background: #fff;
+}
+.fork {
+  position: absolute;
+  bottom: 10px;
+  left: 0;
+  right: 0;
+  font-size: 14px;
+  text-align: center;
+}
+.fork a {
+  color: #2796de;
+  text-decoration: none;
+  border-bottom: 1px solid #bedff5;
+}
+.fork a:hover {
+  color: #000;
+  border-color: rgba(0,0,0,0.2);
+}
+@media (max-height: 400px) {
+  .fork {
+    position: relative;
+    bottom: auto;
+  }
 }
