@@ -14,8 +14,8 @@ Converts dates in timestamps, intervals to milliseconds and backwards.
 - 17/04/2016
 - 17_04_2016
 - 17.04.2016
-- 17 апреля 2016 (17 april 2016)
-- 17 апр 2016 (17 apr 2016)
+- 17 april 2016 (17 апреля 2016)
+- 17 apr 2016 (17 апр 2016)
 
 ## Supported interval formats
 - 1 day (1 день)
