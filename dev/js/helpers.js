@@ -47,14 +47,14 @@ var AppHelpers = {
 		else if (dateStr.indexOf('пос') > -1) {
 			return AppHelpers.getAfterTomorrowDateAndTimestamp();
 		}
-		else if (dateStr.indexOf('зав') > -1 || dateStr.indexOf('tom') > -1) {
+		else if ( (dateStr.indexOf('зав') > -1 && dateStr.indexOf('по') == -1) || dateStr.indexOf('tom') > -1) {
 			return AppHelpers.getTomorrowDateAndTimestamp();
+		}
+		else if (dateStr.indexOf('позавч') > -1) {
+			return AppHelpers.getBeforeYesterdayDateAndTimestamp();
 		}
 		else if (dateStr.indexOf('вче') > -1 || dateStr.indexOf('yest') > -1) {
 			return AppHelpers.getYesterdayDateAndTimestamp();
-		}
-		else if (dateStr.indexOf('поза') > -1) {
-			return AppHelpers.getBeforeYesterdayDateAndTimestamp();
 		}
 	},
 	
