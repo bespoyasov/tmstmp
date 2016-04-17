@@ -27,8 +27,8 @@ Converts dates in timestamps, queries to milliseconds and backwards.
 Timestamp is in milliseconds.
 
 ## Plans
-[] Extended queries like «2 days and 3 hours»
-[] Dates ± queries like «2 april 2016 ± 17 days»
-[] Dates with «ago» like «2 years ago»
+- Extended queries like «2 days and 3 hours»
+- Dates ± queries like «2 april 2016 ± 17 days»
+- Dates with «ago» like «2 years ago»
 
 [Try yourself](http://bespoyasov.ru/tmstmp/)
