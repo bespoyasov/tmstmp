@@ -1,0 +1,137 @@
+html, body, p, h1, h2, h3, h4, h5, h6, ul, li, ol, form, input, span, img, fieldset, legend, label, a, article, aside, audio, canvas, datalist, details, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video, blockquote 
+	margin: 0;
+	padding: 0; 
+	-webkit-text-size-adjust: none;
+	text-size-adjust: none; 
+	max-height: 999999px;
+
+article, aside, audio, canvas, datalist, details, figure, footer, header, hgroup, mark, menu, meter, nav, output, progress, section, time, video 
+	display:block;
+
+html, body 
+	width: 100%;
+	height: 100%; 
+	background: #fff; 
+	font-family: mainFont; 
+	font-size: mainFontSize; 
+	line-height:mainLineHeight;
+
+h1, h2, h3, h4, h5, h6 
+	font-weight:normal;
+
+img 
+	border: 0px;
+
+ul, nav 
+	list-style:none;
+
+
+a
+	linkEffect = color 0.2s, border-color 0.2s, background-color 0.2s;
+	-o-transition:linkEffect; -ms-transition:linkEffect; -moz-transition:linkEffect; -webkit-transition:linkEffect; transition:linkEffect;
+
+a:hover {transition: none;}
+	
+
+iblock()
+	display: -moz-inline-stack; display: inline-block; vertical-align: top; *zoom: 1; *display: inline; margin-right:-4px;
+
+italic() 
+	font-style: italic
+
+bold() 
+	font-weight:bold
+	
+flleft()
+	float: left
+	
+flright()
+	float:right
+
+rel()
+	position: relative
+	
+abs()
+	position:absolute
+	
+fxd()
+	position fixed 
+	
+fixed() 
+	position fixed
+
+hidden()
+	display: none
+
+clear()
+	width:100%; clear: both
+	
+clearfix() 
+	width:100%; clear: both
+
+pointer()
+	cursor: pointer
+	
+default() 
+	cursor: default
+	
+buttonReset()
+	outline: none; -webkit-tap-highlight-color: none; border:0; background: none;
+
+adaptiveImage()
+	width:100%; max-width:100%; height:auto
+	
+smallcaps()
+	font-size: 0.875em; letter-spacing: 0.15em; margin-right: -0.15em;
+	
+smallcapitals()
+	font-size: 0.875em; letter-spacing: 0.15em; margin-right: -0.15em;
+
+uper()
+	text-transform: uppercase; letter-spacing: 0.1em
+	
+textCenter()
+	display:block; text-align: center
+	
+positionCenter()
+	position: absolute; top:0; left:0; bottom:0; right:0; max-width:100%; max-height:auto; margin:auto
+
+centerPosition()
+	position: absolute; top:0; left:0; bottom:0; right:0; max-width:100%; max-height:auto; margin:auto
+	
+wholeContainer()
+	position: absolute; top:0; left:0; width:100%; height:100%
+	
+after()
+	content:' '; display:block;
+	
+before()
+	content:' '; display:block;
+
+iblock()
+	display: -moz-inline-stack; display: inline-block; vertical-align: top; *zoom: 1; *display: inline; margin-right:-4px;
+	
+iblockmid()
+	display: -moz-inline-stack; display: inline-block; vertical-align: middle; *zoom: 1; *display: inline; margin-right:-4px;
+	
+	
+h1 {}
+h2 {}
+h3 {}
+h4 {}
+h5 {}
+h6 {}
+
+button 
+	buttonReset()
+	
+input {}
+
+
+#app
+	width: 100%; 
+	min-height: 100%; 
+	height: auto; 
+	position: relative;
+	min-width:minwidth;
+	color:#000;

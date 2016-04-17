@@ -1,0 +1,49 @@
+#app
+	rel()
+	min-width minwidth
+	display flex
+	align-content center
+
+.container
+	display flex
+	align-self center
+	margin auto
+	max-width maxwidth
+	align-content stretch
+	flex-wrap wrap
+	flex-direction column
+	padding 0 20px
+	
+.app-label
+	display block
+	width 100%
+	margin 0 auto
+	padding 10px 0
+	rel()
+	
+	input 
+		display block
+		outline none
+		border-radius 0
+		border 0
+		border-bottom 1px solid rgba(0,0,0,.2)
+		font-size 20px
+		padding 15px 0
+		width 100%
+		transition border-color 0.2s
+		
+		&:focus
+			border-color black
+
+.app-label--tmstmp
+	&:after
+		abs()
+		after()
+		top: 26px;
+		bottom: 16px;
+		font-size 15px
+		color rgba(0,0,0,.3);
+		content: 'мс';
+		right 0
+		z-index 10
+		background white
