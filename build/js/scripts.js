@@ -230,9 +230,12 @@ var AppHelpers = {
 
 		if (Y < 1000 || y == '') Y = new Date().getFullYear();
 
+		var tm = AppHelpers.getTimestampFromDate(D, M, Y);
+		if (M > 11 || D > 31) tm = 0;
+
 		var res = {
 			date: dateStr,
-			timestamp: AppHelpers.getTimestampFromDate(D, M, Y)
+			timestamp: tm
 		};
 
 		return res;
@@ -289,9 +292,12 @@ var AppHelpers = {
 
 		if (Y < 1000 || y == '') Y = new Date().getFullYear();
 
+		var tm = AppHelpers.getTimestampFromDate(D, M, Y);
+		if (D > 31) tm = 0;
+
 		var res = {
 			date: dateStr,
-			timestamp: AppHelpers.getTimestampFromDate(D, M, Y)
+			timestamp: tm
 		};
 
 		return res;
