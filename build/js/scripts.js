@@ -39,7 +39,8 @@ var AppView = function (_React$Component) {
 
 		return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_Object$getPrototypeO = Object.getPrototypeOf(AppView)).call.apply(_Object$getPrototypeO, [this].concat(args))), _this), _this.state = {
 			tmstmp: 0,
-			date: 0
+			date: 0,
+			type: 1
 		}, _temp), _possibleConstructorReturn(_this, _ret);
 	}
 
@@ -60,6 +61,8 @@ var AppView = function (_React$Component) {
 			var res = _helpers.AppHelpers.parseDate(vl);
 
 			var tmstmp = res ? res.timestamp || '0' : '0';
+			tmstmp = parseInt(tmstmp);
+			if (this.state.type !== 1) tmstmp /= 1000;
 
 			this.setState({
 				date: vl,
@@ -73,10 +76,24 @@ var AppView = function (_React$Component) {
 			var res = _helpers.AppHelpers.parseTimestamp(vl);
 
 			var date = res ? res.date || '' : '';
+			var tmstmp = parseInt(vl);
+			if (this.state.type !== 1) tmstmp /= 1000;
 
 			this.setState({
 				date: date,
-				tmstmp: vl
+				tmstmp: tmstmp
+			});
+		}
+	}, {
+		key: 'onChangeSelect',
+		value: function onChangeSelect(event) {
+			var vl = parseInt(event.target.value);
+			var tmstmp = this.state.tmstmp;
+			if (vl !== 1) tmstmp /= 1000;else tmstmp *= 1000;
+
+			this.setState({
+				type: vl,
+				tmstmp: tmstmp
 			});
 		}
 	}, {
@@ -100,17 +117,31 @@ var AppView = function (_React$Component) {
 					})
 				),
 				_react2.default.createElement(
-					'label',
+					'div',
 					{ className: 'app-label app-label--tmstmp' },
 					_react2.default.createElement('input', {
 						type: 'text',
-						placeholder: 'Таймстамп',
+						placeholder: 'Таймштамп',
 						ref: 'tmstmp',
 						value: this.state.tmstmp,
 						onKeyUp: this.onChangeTimestampInput.bind(this),
 						onChange: this.onChangeTimestampInput.bind(this),
 						maxLength: '14'
-					})
+					}),
+					_react2.default.createElement(
+						'select',
+						{ name: 'type', ref: 'type', defaultValue: '1', onChange: this.onChangeSelect.bind(this) },
+						_react2.default.createElement(
+							'option',
+							{ value: '1' },
+							'мс'
+						),
+						_react2.default.createElement(
+							'option',
+							{ value: '2' },
+							'с'
+						)
+					)
 				)
 			);
 		}

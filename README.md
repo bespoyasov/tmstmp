@@ -8,8 +8,7 @@ Converts dates in timestamps, intervals to milliseconds and backwards.
 - yesterday (вчера)
 - позавчера
 - 17 04 2016
-- 17 4 2016
-- 17 4 16
+- 17 04 16
 - 17-04-2016
 - 17/04/2016
 - 17_04_2016
@@ -26,7 +25,7 @@ Converts dates in timestamps, intervals to milliseconds and backwards.
 - 125 hours (125 часов)
 
 ## Metrics
-Timestamp is in milliseconds.
+By default timestamp is in milliseconds. You can change it to seconds by changing select value.
 
 ## Plans
 - Extended intervals like 2 days and 3 hours

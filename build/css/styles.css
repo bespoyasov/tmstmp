@@ -166,20 +166,25 @@ button {
   transition: border-color 0.2s;
 }
 .app-label input:focus {
-  border-color: #000;
+  border-color: rgba(0,0,0,0.5);
 }
-.app-label--tmstmp:after {
-  position: absolute;
-  content: ' ';
+.app-label select {
+  -webkit-appearance: none;
+  appearance: none;
   display: block;
-  top: 26px;
-  bottom: 15px;
-  font-size: 14px;
+  font-size: 15px;
   color: rgba(0,0,0,0.3);
-  content: 'мс';
+  position: absolute;
+  bottom: 24px;
   right: 0;
-  z-index: 10;
-  background: #fff;
+  background: none;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+  text-align: right;
+}
+.app-label select:hover {
+  color: rgba(0,0,0,0.5);
 }
 .fork {
   position: absolute;

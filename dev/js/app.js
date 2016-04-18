@@ -9,7 +9,8 @@ class AppView extends React.Component {
 	
 	state = {
 		tmstmp: 0,
-		date: 0
+		date: 0,
+		type: 1
 	};
 	
 	componentDidMount() {
@@ -26,6 +27,8 @@ class AppView extends React.Component {
 		let res = AppHelpers.parseDate(vl);
 		
 		let tmstmp = res ? (res.timestamp || '0') : '0';
+		tmstmp = parseInt(tmstmp);
+		if (this.state.type !== 1) tmstmp /= 1000
 		
 		this.setState({
 			date: vl,
@@ -38,10 +41,24 @@ class AppView extends React.Component {
 		let res = AppHelpers.parseTimestamp(vl);
 		
 		let date = res ? (res.date || '') : '';
+		let tmstmp = parseInt(vl);
+		if (this.state.type !== 1) tmstmp /= 1000
 		
 		this.setState({
 			date: date,
-			tmstmp: vl
+			tmstmp: tmstmp
+		})
+	}
+	
+	onChangeSelect(event) {
+		let vl = parseInt(event.target.value);
+		let tmstmp = this.state.tmstmp;
+		if (vl !== 1) tmstmp /= 1000;
+		else tmstmp *= 1000;
+		
+		this.setState({
+			type: vl,
+			tmstmp: tmstmp
 		})
 	}
 		
@@ -62,17 +79,22 @@ class AppView extends React.Component {
 					/>
 				</label>
 				
-				<label className="app-label app-label--tmstmp">
+				<div className="app-label app-label--tmstmp">
 					<input 
 						type="text" 
-						placeholder="Таймстамп" 
+						placeholder="Таймштамп" 
 						ref="tmstmp" 
 						value={this.state.tmstmp}
 						onKeyUp={this.onChangeTimestampInput.bind(this)}
 						onChange={this.onChangeTimestampInput.bind(this)}
 						maxLength="14"
 					/>
-				</label>
+					
+					<select name="type" ref="type" defaultValue="1" onChange={this.onChangeSelect.bind(this)}>
+						<option value="1">мс</option>
+						<option value="2">с</option>
+					</select>
+				</div>
 				
 			</div>
 		);
