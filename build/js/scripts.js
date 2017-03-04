@@ -287,7 +287,7 @@ var AppHelpers = {
 		}
 
 		var D = parseInt(d);
-		var M = parseInt(idx);
+		var M = parseInt(idx) + 1;
 		var Y = parseInt(y);
 
 		if (Y < 1000 || y == '') Y = new Date().getFullYear();
@@ -409,7 +409,7 @@ var AppHelpers = {
 		return ms;
 	}
 
-}; /* 
+}; /*
    	Форматы:
    	0 — Сегодня, завтра, послезавтра, today, tomorrow;
    	1 — 17 04 2016, 17.04.2016, 17/04/2016, 17 4 2016, 17 04 16 и т.д.;

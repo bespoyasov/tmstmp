@@ -27,9 +27,4 @@ Converts dates in timestamps, intervals to milliseconds and backwards.
 ## Metrics
 By default timestamp is in milliseconds. You can change it to seconds by changing select value.
 
-## Plans
-- Extended intervals like 2 days and 3 hours
-- Dates ± intervals like 2 april 2016 ± 17 days
-- Dates with intervals like 2 years ago
-
 [Try yourself](http://bespoyasov.ru/tmstmp/)

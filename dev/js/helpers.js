@@ -1,4 +1,4 @@
-/* 
+/*
 	Форматы:
 	0 — Сегодня, завтра, послезавтра, today, tomorrow;
 	1 — 17 04 2016, 17.04.2016, 17/04/2016, 17 4 2016, 17 04 16 и т.д.;
@@ -9,11 +9,11 @@ import AppCnstns from './constants'
 
 
 var AppHelpers = {
-	
+
 	// связь с вьюхой
 	parseDate: function(date) {
 		let dateStr = date.toString().toLowerCase();
-		
+
 		if (dateStr.search(/[a-zA-Zа-яА-Я]/g) == -1) {
 			return AppHelpers.parseDateFormat1(dateStr);
 		}
@@ -24,21 +24,21 @@ var AppHelpers = {
 			return AppHelpers.parseDateFormat2(dateStr);
 		}
 	},
-	
-	
+
+
 	parseTimestamp: function(tmstmp) {
 		let tmstmpInt = parseInt(tmstmp) || 0;
-		
+
 		let res = {
 			date: AppHelpers.getDateFromTimestamp(tmstmpInt),
 			timestamp: tmstmpInt,
 		}
-		
+
 		return res;
 	},
-	
-	
-	
+
+
+
 	// определение формата
 	parseDateFormat0: function(dateStr) {
 		if (dateStr.indexOf('се') > -1 || dateStr.indexOf('tod') > -1) {
@@ -57,33 +57,33 @@ var AppHelpers = {
 			return AppHelpers.getYesterdayDateAndTimestamp();
 		}
 	},
-	
-	
-	parseDateFormat1: function(dateStr) {		
+
+
+	parseDateFormat1: function(dateStr) {
 		let d = dateStr.substr(0, dateStr.search(/\D/)).replace(/\D/g, '');
 		let m = dateStr.substr(dateStr.search(/\D/), dateStr.search(/\D/)+1).replace(/\D/g, '');
 		let y = dateStr.substr(dateStr.search(/\D/)+3).replace(/\D/g, '');
-		
+
 		let D = parseInt(d);
 		let M = parseInt(m);
 		let Y = parseInt(y);
 
 		if (Y < 1000 || y == '') Y = (new Date).getFullYear();
-		
+
 		let tm = AppHelpers.getTimestampFromDate(D, M, Y);
 		if (M > 11 || D > 31) tm = 0;
-		
+
 		let res = {
 			date:dateStr,
 			timestamp: tm
 		}
-		
+
 		return res;
 	},
-	
-	
+
+
 	parseDateFormat2: function(dateStr) {
-		
+
 		// калькулятор
 		let preRes = {
 			date: dateStr
@@ -107,48 +107,48 @@ var AppHelpers = {
 		else if (dateStr.indexOf('лет') > -1 || dateStr.indexOf('год') > -1 || dateStr.indexOf('yea') > -1) {
 			preRes.timestamp = AppHelpers.getMSFor(6, dateStr);
 		}
-		
+
 		if (preRes.timestamp) return preRes;
-		
+
 		// не калькулятор
 		let d = dateStr.substr(0, dateStr.search(/\s/));
 		let m = dateStr.substr(dateStr.search(/\s/)).replace(/\d/g, '').replace(/\s/g, '');
 		let y = dateStr.substr(dateStr.search(/\s/)).replace(/\D/g, '').replace(/\s/g, '');
-		
+
 		let months = AppCnstns.months,
 			monthsEng = AppCnstns.monthsEng,
 			month = '',
 			idx = -1;
-			
+
 		for (let i in months) {
 			let itm = months[i];
 			if (m.indexOf(itm) > -1) idx = i;
 		}
-		
+
 		if (idx == -1) {
 			for (let i in monthsEng) {
 				let itm = monthsEng[i];
 				if (m.indexOf(itm) > -1) idx = i;
 			}
 		}
-		
+
 		let D = parseInt(d);
-		let M = parseInt(idx);
+		let M = parseInt(idx) + 1;
 		let Y = parseInt(y);
 
-		if (Y < 1000 || y == '') Y = (new Date).getFullYear();		
-		
+		if (Y < 1000 || y == '') Y = (new Date).getFullYear();
+
 		let tm = AppHelpers.getTimestampFromDate(D, M, Y);
 		if (D > 31) tm = 0;
-		
+
 		let res = {
 			date:dateStr,
 			timestamp: tm
 		}
-		
+
 		return res;
 	},
-	
+
 
 
 	// то оттуда или наоборот
@@ -156,21 +156,21 @@ var AppHelpers = {
 		let tmstmpInt = parseInt(tmstmp);
 		let dt = new Date();
 		dt.setTime(tmstmpInt);
-		
+
 		let d = parseInt(dt.getDate());
 		if (d < 10) d = '0' + d.toString();
 		d += ' ';
-		
+
 		let m = parseInt(dt.getMonth()) + 1;
 		if (m < 10) m = '0' + m.toString();
 		m += ' ';
-		
+
 		let y = parseInt(dt.getFullYear());
-		
+
 		return ''.concat(d,m,y);
 	},
-	
-	
+
+
 	getTimestampFromDate: function(D, M, Y) {
 		let dt = new Date();
 		dt.setDate(D);
@@ -180,62 +180,62 @@ var AppHelpers = {
 		let startOfDay = new Date(dt.getFullYear(), dt.getMonth(), dt.getDate());
 		return startOfDay.getTime();
 	},
-	
-	
-	
+
+
+
 	// для сегодня, завтра, послезавтра
 	getTimestampOfStartDay: function(daysforward) {
 		let now = new Date();
 		let days = daysforward || 1;
 		if (days == 4) days = 0;
 		if (days == 5) days = -1;
-		
+
 		let startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
 		startOfDay = startOfDay.getTime() + (days-1)*86400000;
-		
+
 		let result = {
 			timestamp: startOfDay,
 			date: AppHelpers.getDateFromTimestamp(startOfDay),
 		}
-		
+
 		return result;
 	},
-	
-	
+
+
 	getTodayDateAndTimestamp: function() {
 		let result = AppHelpers.getTimestampOfStartDay(1);
 		return result;
 	},
-	
-	
+
+
 	getTomorrowDateAndTimestamp: function() {
 		let result = AppHelpers.getTimestampOfStartDay(2);
 		return result;
 	},
-	
-	
+
+
 	getAfterTomorrowDateAndTimestamp: function() {
 		let result = AppHelpers.getTimestampOfStartDay(3);
 		return result;
 	},
-	
-	
+
+
 	getYesterdayDateAndTimestamp: function() {
 		let result = AppHelpers.getTimestampOfStartDay(4);
 		return result;
 	},
-	
+
 	getBeforeYesterdayDateAndTimestamp: function() {
 		let result = AppHelpers.getTimestampOfStartDay(5);
 		return result;
 	},
-	
-	
-	
+
+
+
 	// количество миллисекунд
 	getMSFor: function(type, dateStr) {
 		let offset = 1000;
-		
+
 		switch (type) {
 			case 1:
 				offset *= 60;
@@ -255,17 +255,17 @@ var AppHelpers = {
 			case 6:
 				offset *= (60 * 60 * 24 * 365);
 				break;
-				
+
 			default:
 				offset = offset;
 				break;
 		}
-		
+
 		let nmbr = parseInt(dateStr.replace(/\D/g, ''));
 		let ms = nmbr * offset;
 		return ms;
 	}
-	
+
 }
 
 export {AppHelpers}
