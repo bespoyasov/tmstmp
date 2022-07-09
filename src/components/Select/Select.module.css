@@ -1,0 +1,13 @@
+.select {
+  display: block;
+  padding: 2px 5px;
+
+  background: none;
+  border: 0;
+
+  font-size: 0.85em;
+  color: rgba(0, 0, 0, 0.3);
+
+  cursor: pointer;
+  appearance: none;
+}
