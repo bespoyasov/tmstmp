@@ -1,7 +1,7 @@
 import { createStore } from "effector";
 import { useStore } from "effector-react";
 
-import { project, convert, startOf } from "../../core";
+import { toUnit, convert, startOf } from "../../core";
 
 import type { ConverterState, UiRepresentation } from "./types";
 import { updateDateEvent, updateDate } from "./updateDate";
@@ -15,7 +15,7 @@ const $converter = createStore<ConverterState>({
 });
 
 const $representation = $converter.map<UiRepresentation>(({ unit, value }) => ({
-  stamp: project(unit, value),
+  stamp: toUnit(unit, value),
   date: convert(value),
 }));
 
