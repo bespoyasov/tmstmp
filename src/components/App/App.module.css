@@ -1,5 +1,7 @@
 .app {
   height: 100vh;
+  height: -webkit-fill-available;
+  height: stretch;
   min-height: 320px;
   min-width: 320px;
 
