@@ -1,22 +1,6 @@
 {
-  "name": "timestampConverter",
-  "version": "0.0.1",
-  "devDependencies": {
-    "autoprefixer": "^6.2.3",
-    "babel-plugin-extensible-destructuring": "^2.0.0",
-    "babel-preset-es2015": "^6.3.13",
-    "babel-preset-react": "^6.3.13",
-    "babel-preset-stage-0": "^6.3.13",
-    "babelify": "^7.2.0",
-    "grunt": "^0.4.5",
-    "grunt-contrib-concat": "^0.5.1",
-    "grunt-contrib-imagemin": "^0.9.4",
-    "grunt-contrib-jade": "^0.15.0",
-    "grunt-contrib-stylus": "^0.22.0",
-    "grunt-contrib-uglify": "^0.11.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-postcss": "^0.7.1",
-    "load-grunt-tasks": "^3.4.0",
-    "react-tools": "^0.13.3"
-  }
+  "name": "tmstmp",
+  "description": "Converts dates to time stamps and backwards.",
+  "private": "true",
+  "version": "0.1.0"
 }
