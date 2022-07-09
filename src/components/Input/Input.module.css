@@ -3,6 +3,23 @@
 }
 
 .control {
+  padding: 15px 0;
   width: 100%;
   display: block;
+
+  outline: none;
+  border: 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 0;
+
+  font-size: 1.2em;
+  line-height: 1;
+}
+
+.control:focus {
+  border-color: #000;
+}
+
+.control:invalid {
+  border-color: red;
 }
