@@ -1,4 +1,5 @@
 import { VisuallyHidden } from "../VisuallyHidden";
+import { options } from "./options";
 import styles from "./Select.module.css";
 
 export const Select = () => {
@@ -7,8 +8,11 @@ export const Select = () => {
       <VisuallyHidden>Select the time unit:</VisuallyHidden>
 
       <select className={styles.select}>
-        <option value="ms">ms</option>
-        <option value="s">s</option>
+        {options.map(({ label, value }) => (
+          <option key={value} value={value}>
+            {label}
+          </option>
+        ))}
       </select>
     </label>
   );
