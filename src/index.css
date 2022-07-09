@@ -2,3 +2,13 @@ body {
   margin: 0;
   font-family: Helvetica, Arial, sans-serif;
 }
+
+a {
+  color: #2796de;
+  text-decoration-color: #bedff5;
+}
+
+a:hover {
+  color: #000;
+  text-decoration-color: rgba(0, 0, 0, 0.2);
+}
