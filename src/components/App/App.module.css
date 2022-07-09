@@ -1,6 +1,7 @@
 .app {
   height: 100vh;
   min-height: 320px;
+  min-width: 320px;
 
   display: flex;
   flex-direction: column;
