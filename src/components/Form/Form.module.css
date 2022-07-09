@@ -1,0 +1,19 @@
+.form {
+  position: relative;
+}
+
+.select {
+  height: 55px;
+  width: 35px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  position: absolute;
+  right: 0;
+  bottom: 3px;
+
+  background-color: white;
+  text-align: end;
+}
