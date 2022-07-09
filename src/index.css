@@ -18,3 +18,7 @@ a:hover {
   color: #000;
   text-decoration-color: rgba(0, 0, 0, 0.2);
 }
+
+input::-webkit-date-and-time-value {
+  text-align: start;
+}

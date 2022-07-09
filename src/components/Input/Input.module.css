@@ -7,13 +7,16 @@
   width: 100%;
   display: block;
 
-  outline: none;
+  background: white;
   border: 0;
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   border-radius: 0;
 
   font-size: 1.2em;
   line-height: 1;
+  color: inherit;
+
+  outline: none;
 }
 
 .control:focus {
