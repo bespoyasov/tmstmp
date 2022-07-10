@@ -19,6 +19,10 @@ a:hover {
   text-decoration-color: rgba(0, 0, 0, 0.2);
 }
 
+input:is([type="date"]) {
+  -webkit-appearance: textfield;
+}
+
 input::-webkit-date-and-time-value {
   text-align: start;
 }
