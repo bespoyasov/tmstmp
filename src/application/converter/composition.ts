@@ -1,7 +1,7 @@
 import { createStore } from "effector";
 import { useStore } from "effector-react";
 
-import { toUnit, toDateString, startOf, Unit } from "../../core";
+import { toUnit, toDateString, startOf } from "../../core";
 import { readUnit, saveUnit } from "../../infrastructure";
 
 import type { ConverterState, UiRepresentation } from "./types";
