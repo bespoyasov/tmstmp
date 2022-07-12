@@ -2,7 +2,7 @@ import { createStore } from "effector";
 import { useStore } from "effector-react";
 
 import { toUnit, toDateString, startOf, Unit } from "../../core";
-import { readUnit } from "../../infrastructure";
+import { readUnit, saveUnit } from "../../infrastructure";
 
 import type { ConverterState, UiRepresentation } from "./types";
 import { updateDateEvent, updateDate } from "./updateDate";
@@ -23,9 +23,7 @@ $converter
   .on(updateStampEvent, updateStamp)
   .on(updateUnitEvent, updateUnit);
 
-updateUnitFx.use((unit: Unit): void => {
-  window.localStorage.setItem("tmstmp-unit", unit);
-});
+updateUnitFx.use(saveUnit);
 
 export const useConverter = () => useStore($converter);
 export const useUiRepresentation = () => useStore($representation);
