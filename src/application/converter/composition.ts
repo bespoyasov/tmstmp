@@ -6,7 +6,7 @@ import { toUnit, toDateString, startOf, Unit } from "../../core";
 import type { ConverterState, UiRepresentation } from "./types";
 import { updateDateEvent, updateDate } from "./updateDate";
 import { updateStampEvent, updateStamp } from "./updateStamp";
-import { updateUnitEvent, updateUnit, updateUnitEffect } from "./updateUnit";
+import { updateUnitEvent, updateUnit, updateUnitFx } from "./updateUnit";
 
 const today = startOf(Date.now());
 const $converter = createStore<ConverterState>({
@@ -24,7 +24,7 @@ $converter
   .on(updateStampEvent, updateStamp)
   .on(updateUnitEvent, updateUnit);
 
-updateUnitEffect.use((unit: Unit): void => {
+updateUnitFx.use((unit: Unit): void => {
   window.localStorage.setItem("tmstmp-unit", unit);
 });
 

@@ -3,7 +3,7 @@ import type { Unit } from "../../core";
 import type { ConverterState } from "./types";
 
 export const updateUnitEvent = createEvent<Unit>();
-export const updateUnitEffect = createEffect<Unit, void>();
+export const updateUnitFx = createEffect<Unit, void>();
 
 export const updateUnit = (
   state: ConverterState,
