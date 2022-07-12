@@ -10,7 +10,3 @@ export const updateUnit = (
 ): ConverterState => ({ ...state, unit: value });
 
 export const updateUnitEffect = createEffect<Unit, void>();
-
-updateUnitEffect.use((unit: Unit): void => {
-  window.localStorage.setItem("tmstmp-unit", unit);
-});
