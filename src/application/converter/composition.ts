@@ -10,7 +10,7 @@ import { updateUnitEvent, updateUnit } from "./updateUnit";
 
 const today = startOf(Date.now());
 const $converter = createStore<ConverterState>({
-  unit: (window.localStorage.getItem("unit") as Unit) ?? "ms",
+  unit: (window.localStorage.getItem("tmstmp-unit") as Unit) ?? "ms",
   value: today,
 });
 

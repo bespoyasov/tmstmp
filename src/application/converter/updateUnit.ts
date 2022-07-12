@@ -12,5 +12,5 @@ export const updateUnit = (
 export const updateUnitEffect = createEffect<Unit, void>();
 
 updateUnitEffect.use((unit: Unit): void => {
-  window.localStorage.setItem("unit", unit);
+  window.localStorage.setItem("tmstmp-unit", unit);
 });
