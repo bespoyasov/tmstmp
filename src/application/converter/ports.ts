@@ -6,8 +6,9 @@ import { updateStampEvent } from "./updateStamp";
 import { updateUnitEvent, updateUnitFx } from "./updateUnit";
 
 export const updateUnit = (event: ChangeEvent<HTMLSelectElement>) => {
-  updateUnitEvent(event.target.value as Unit);
-  updateUnitFx(event.target.value as Unit);
+  const value = event.target.value as Unit;
+  updateUnitEvent(value);
+  updateUnitFx(value);
 };
 
 export const updateDate = (event: FormEvent<HTMLInputElement>) => {
