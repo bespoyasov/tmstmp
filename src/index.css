@@ -1,3 +1,7 @@
+:root {
+  --font: Helvetica, Arial, sans-serif;
+}
+
 *,
 *::before,
 *::after {
@@ -6,7 +10,7 @@
 
 body {
   margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: var(--font);
 }
 
 a {
